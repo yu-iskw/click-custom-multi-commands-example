@@ -7,6 +7,7 @@ plugin_folder = os.path.join(os.path.dirname(__file__), 'commands')
 class MyCLI(click.MultiCommand):
 
     def list_commands(self, ctx):
+        """Dynamically get the list of commands."""
         rv = []
         for filename in os.listdir(plugin_folder):
             if filename.endswith('.py') and not filename.startswith('__init__'):
@@ -15,6 +16,7 @@ class MyCLI(click.MultiCommand):
         return rv
 
     def get_command(self, ctx, name):
+        """Dynamically get the command."""
         ns = {}
         fn = os.path.join(plugin_folder, name + '.py')
         with open(fn) as f:
@@ -25,6 +27,7 @@ class MyCLI(click.MultiCommand):
 
 @click.command(cls=MyCLI)
 def cli():
+    """The root of commands."""
     pass
 
 

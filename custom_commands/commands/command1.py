@@ -3,6 +3,7 @@ import click
 
 @click.group()
 def cli():
+    """The sub root of this commands."""
     pass
 
 
